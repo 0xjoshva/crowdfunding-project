@@ -3,6 +3,7 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *,
 *::before,
 *::after {
@@ -14,6 +15,7 @@
 html,
 body {
   height: 100%;
+  font-family: 'Commissioner', sans-serif;
 }
 body {
   line-height: 1.5;

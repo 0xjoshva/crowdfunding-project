@@ -3,7 +3,11 @@
     <section id="home">
 <nav>
   <img src="../assets/logo.svg" alt="">
-  <div class="links"></div>
+  <div class="links">
+    <a href="">About</a>
+    <a href="">Discover</a>
+    <a href="">Get Started</a>
+  </div>
 </nav>
     </section>
     <section id="crowdfund">
@@ -16,7 +20,7 @@
             <button>Back this project</button>
           <button>Bookmark</button>
           </div>
-          
+          <progress min="0" max="100" value="60"></progress>
         </div>
         <div class="mid panel">
 <div>
@@ -81,7 +85,17 @@ nav{
   height: fit-content;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 3rem;
+}
+nav .links{
+  display: flex;
+  column-gap: 3rem;
+}
+.links a{
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
 }
 #crowdfund{
   height: fit-content;
