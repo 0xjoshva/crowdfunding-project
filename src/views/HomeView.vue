@@ -20,10 +20,10 @@
             <button>Back this project</button>
           <button>Bookmark</button>
           </div>
-          <progress min="0" max="100" value="60"></progress>
+      
         </div>
         <div class="mid panel">
-<div>
+<div class="mid-values">
   <div><h2>$89,914</h2>
     <p>of $100,000 backed</p>
   </div>
@@ -38,7 +38,11 @@
     <p>days left</p>
   </div>
  <!-- slider -->
+
 </div>
+ <div class="bar">
+<div class="progress"></div>
+ </div>
         </div>
         <div class="bottom panel">
 <h6>About this project</h6>
@@ -125,11 +129,54 @@ nav .links{
 }
 .top{
   height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .mid{
   height: 15rem;
+  padding: 4rem;
+  padding-bottom: 1rem;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
 }
 .bottom{
   height: 40rem;
+}
+h1{
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.bar{
+  width: 100%;
+  background: #FAFAFA;
+  height: .9rem;
+  border-radius: 26px;
+}
+.progress{
+  width: 60%;
+  height: 100%;
+  background: var(--moderatecyan);
+  border-radius: 26px;
+  animation: slide 2s cubic-bezier(0.39, 0.58, 0.57, 1);
+  animation-delay: 1s;
+}
+@keyframes slide{
+0%{
+  width: 0%;
+}
+100%{
+  width:60%;
+}
+}
+.mid-values{
+  display: flex;
+  justify-content: space-between;
+}
+.mid-values div{
+border-right: 3px solid #f6f3f3;
+padding: 1rem;
 }
 </style>
