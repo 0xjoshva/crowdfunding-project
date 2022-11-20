@@ -245,7 +245,7 @@ export default {
       bookMarked: false,
       modalOpen: false,
       isChecked: null,
-      thankYouModalOpen: true,
+      thankYouModalOpen: false,
       hover: null,
     };
   },
