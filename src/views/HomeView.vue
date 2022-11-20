@@ -205,8 +205,8 @@ export default {
         },
       ],
       bookMarked: false,
-      modalOpen: true,
-      isChecked: 1,
+      modalOpen: false,
+      isChecked: null,
       thankYouModalOpen: false,
     };
   },
