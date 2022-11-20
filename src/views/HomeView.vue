@@ -85,6 +85,14 @@
           </div>
         </div>
       </div>
+      <div class="modal-backdrop" v-show="thankYouModalOpen">
+        <div class="thankyou-modal">
+          <img src="../assets/icon-check.svg" alt="">
+          <h2>Thanks for your support!</h2>
+          <p>Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign in completed.</p>
+          <button @click="thankYouModalOpen = false">Got it!</button>
+        </div>
+      </div>
       <nav>
         <img src="../assets/logo.svg" alt="" />
         <div class="links">
@@ -237,7 +245,7 @@ export default {
       bookMarked: false,
       modalOpen: false,
       isChecked: null,
-      thankYouModalOpen: false,
+      thankYouModalOpen: true,
       hover: null,
     };
   },
@@ -703,5 +711,44 @@ h4 {
 }
 .heading p {
   color: rgb(94, 94, 94);
+}
+.thankyou-modal{
+  background: white;
+  width: 23vw;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  row-gap: 1rem;
+}
+.thankyou-modal img{
+  width: 90px;
+  margin-bottom: 1rem;
+}
+.thankyou-modal h2{
+  font-size: 1.3rem;
+}
+.thankyou-modal p{
+font-size: 1rem;
+color: rgb(94, 94, 94);
+}
+.thankyou-modal button{
+  color: white;
+  background: var(--moderatecyan);
+  border: none;
+  outline: none;
+  font-weight: 500;
+  padding-inline: 1.6rem;
+  padding-block: .7rem;
+  border-radius: 50px;
+  font-size: 1rem;
+ cursor: pointer;
+ transition: .2s ease-in-out all;
+}
+.thankyou-modal button:hover{
+  background: var(--darkcyan);
 }
 </style>
