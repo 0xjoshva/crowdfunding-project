@@ -3,15 +3,20 @@
     <section id="home">
       <div class="modal-backdrop" v-show="modalOpen">
         <div class="modal">
-          <button @click="modalOpen = false, isChecked = null" class="btnclose">
+          <button
+            @click="(modalOpen = false), (isChecked = null)"
+            class="btnclose"
+          >
             <img src="../assets/icon-close-modal.svg" alt="" />
           </button>
-          <h1>Back this project</h1>
+          <div class="heading">
+            <h1>Back this project</h1>
 
-          <p>
-            Want to support us in bringing Mastercraft Bamboo Monitor Riser out
-            in the world?
-          </p>
+            <p>
+              Want to support us in bringing Mastercraft Bamboo Monitor Riser
+              out in the world?
+            </p>
+          </div>
           <div class="modal-container">
             <button
               class="modal-item"
@@ -19,40 +24,63 @@
               v-for="product in products"
               :key="product.id"
               :disabled="product.remainingAmount === 0"
-              :class="{ disabled: product.remainingAmount === 0, modalItemChecked: isChecked === product.id }"
+              :class="{
+                disabled: product.remainingAmount === 0,
+                modalItemChecked: isChecked === product.id,
+              }"
+              @mouseenter="hover = product.id"
+              @mouseleave="hover = null"
             >
-            <div class="row">
-              <div class="circle">
-                <div class="center" v-if="isChecked === product.id"></div>
-                <div v-else-if="product.remainingAmount === 0"></div>
-              </div>
-              <div class="content">
-                <div class="content-top">
-                  <div class="first">
-                  <div class="title">{{ product.name }}</div>
-                  <div class="pledge" v-if="product.minPledge > 0">
-                    Pledge ${{ product.minPledge }} or more
-                  </div></div>
-                  <div class="amount">
-                    {{ product.remainingAmount }} <span v-show="product.id > 0">left</span>
-                  </div>
-                </div>
-                <div class="description">{{ product.description }}</div>
-                
-              </div></div>
-              <div
-                  class="input-div"
-                  v-if="isChecked === product.id"
+              <div class="row">
+                <div
+                  class="circle"
+                  :class="{
+                    hovered: hover === product.id && isChecked === null,
+                  }"
                 >
-                  <p>Enter your pledge</p>
-<div class="end">
-  <label for="minpledge"><p>$</p><input type="text" :value="product.minPledge" name="minpledge"/></label>
+                  <div class="center" v-if="isChecked === product.id"></div>
+                  <div v-else-if="product.remainingAmount === 0"></div>
+                </div>
+                <div class="content">
+                  <div class="content-top">
+                    <div class="first">
+                      <div
+                        class="title"
+                        :class="{
+                          texthover: hover === product.id && isChecked === null,
+                        }"
+                      >
+                        {{ product.name }}
+                      </div>
+                      <div class="pledge" v-if="product.minPledge > 0">
+                        Pledge ${{ product.minPledge }} or more
+                      </div>
+                    </div>
+                    <div class="amount">
+                      {{ product.remainingAmount }}
+                      <span v-show="product.id > 0">left</span>
+                    </div>
+                  </div>
+                  <div class="description">{{ product.description }}</div>
+                </div>
+              </div>
+              <div class="input-div" v-if="isChecked === product.id">
+                <p>Enter your pledge</p>
+                <div class="end">
+                  <label for="minpledge"
+                    ><p>$</p>
+                    <input
+                      type="text"
+                      :value="product.minPledge"
+                      name="minpledge"
+                  /></label>
                   <button
                     @click="(modalOpen = false), (thankYouModalOpen = true)"
                   >
                     Continue
-                  </button></div>
+                  </button>
                 </div>
+              </div>
             </button>
           </div>
         </div>
@@ -145,11 +173,13 @@
               </div>
               <p class="description">{{ product.description }}</p>
               <div class="item-bottom">
-                <h6 class="remaining">{{ product.remainingAmount }}<span>left</span></h6>
+                <h6 class="remaining">
+                  {{ product.remainingAmount }}<span>left</span>
+                </h6>
                 <button
                   v-show="product.remainingAmount > 0"
                   class="reward-btn"
-                  @click="isChecked = product.id, modalOpen = true"
+                  @click="(isChecked = product.id), (modalOpen = true)"
                 >
                   Select Reward
                 </button>
@@ -208,6 +238,7 @@ export default {
       modalOpen: false,
       isChecked: null,
       thankYouModalOpen: false,
+      hover: null,
     };
   },
   components: {
@@ -419,7 +450,6 @@ h1 {
 }
 h6 {
   font-size: 1.4rem;
-
 }
 .modal-backdrop {
   height: 100vh;
@@ -443,21 +473,21 @@ h6 {
   display: flex;
   justify-content: space-between;
 }
-.content-top{
+.content-top {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.first{
+.first {
   display: flex;
   column-gap: 1rem;
 }
-.amount{
+.amount {
   font-size: 1.2rem;
   font-weight: 700;
 }
-.amount span{
-   font-size: 1rem;
+.amount span {
+  font-size: 1rem;
   font-weight: 400;
   color: rgb(94, 94, 94);
 }
@@ -500,28 +530,28 @@ h6 {
   display: flex;
   flex-direction: column;
   column-gap: 1rem;
-  background:white;
+  background: white;
   color: black;
   text-align: left;
- padding: 0;
+  padding: 0;
 }
-.row{
+.row {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   column-gap: 1rem;
-   padding: 2rem;
+  padding: 2rem;
 }
-.title{
-font-weight: 700;
-font-size: 1.1rem;
+.title {
+  font-weight: 700;
+  font-size: 1.1rem;
 }
-.modal .pledge{
-font-weight: 600;
-font-size: 1.1rem;
+.modal .pledge {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
-.modalItemChecked{
-  border: 1px solid var(--moderatecyan);
+.modalItemChecked {
+  border: 2px solid var(--moderatecyan);
 }
 /* about items */
 .container {
@@ -541,38 +571,37 @@ font-size: 1.1rem;
 .disabledClass {
   opacity: 0.4;
 }
-.item-top{
-  display: flex;
-   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.item-bottom{
+.item-top {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-margin-top: .5rem;
+}
+.item-bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
 }
 .remaining {
   font-size: 2rem;
 }
 .remaining span {
-   font-size: 1rem;
+  font-size: 1rem;
   font-weight: 400;
   vertical-align: top;
   line-height: 2.7rem;
   margin-left: 0.4rem;
   color: rgb(94, 94, 94);
-
 }
 .reward-btn {
   background: var(--moderatecyan);
   cursor: pointer;
-  transition: .2s ease-in-out all;
+  transition: 0.2s ease-in-out all;
 }
-.reward-btn:hover{
-  background:var(--darkcyan);
+.reward-btn:hover {
+  background: var(--darkcyan);
 }
 .nostock-btn {
   background: var(--darkgray);
@@ -590,70 +619,89 @@ margin-top: .5rem;
   width: fit-content;
   height: fit-content;
 }
-h4{
+h4 {
   font-size: 1.2rem;
 }
-.pledge{
+.pledge {
   color: var(--moderatecyan);
   font-weight: 400;
 }
-.description{
+.description {
   color: rgb(94, 94, 94);
 }
-.input-div{
+.input-div {
   border-top: 2px solid rgb(220, 220, 220);
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100%;
-padding-inline: 2rem;
-padding-block: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 2rem;
+  padding-block: 1rem;
 }
-  .input-div p{
-    
-  }
-  .input-div input{
-width: 4rem;
-border: none;
-text-align: center;
-outline: none;
-  }
-  .input-div label{
-    width: fit-content;
-border-radius: 50px;
-border: 2px solid rgb(220, 220, 220);
-display: flex;
-justify-content: center;
-align-items: center;
-padding: .6rem;
-font-weight: 600;
-transition: .2s ease-in-out all;
-  }
-   .input-div:focus-within label{
-    border: 2px solid var(--moderatecyan);
-   }
-    .input-div label p{
-      color:rgb(206, 206, 206);
-    }
-  .input-div button{
-background: var(--moderatecyan);
-transition: all .2s ease-in-out; 
-border: none;
-border-radius: 50px;
-outline: none;
-color: white;
-font-size: 1rem;
-font-weight: 600;
-padding-inline: 1.5rem;
-padding-block: .6rem;
-width: fit-content;
-  }
-  .input-div button:hover{
-    background: var(--darkcyan);
-  }
-  .end{
-    display: flex;
-    column-gap: 1rem;
-    height: fit-content;
-  }
+.input-div p {
+}
+.input-div input {
+  width: 4rem;
+  border: none;
+  text-align: center;
+  outline: none;
+  caret-color: var(--moderatecyan);
+}
+.input-div label {
+  width: fit-content;
+  border-radius: 50px;
+  border: 2px solid rgb(220, 220, 220);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem;
+  font-weight: 600;
+  transition: 0.2s ease-in-out all;
+}
+.input-div:focus-within label {
+  border: 2px solid var(--moderatecyan);
+}
+.input-div label p {
+  color: rgb(206, 206, 206);
+}
+.input-div button {
+  background: var(--moderatecyan);
+  transition: all 0.2s ease-in-out;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding-inline: 1.5rem;
+  padding-block: 0.6rem;
+  width: fit-content;
+}
+.input-div button:hover {
+  background: var(--darkcyan);
+}
+.end {
+  display: flex;
+  column-gap: 1rem;
+  height: fit-content;
+}
+.texthover {
+  color: var(--moderatecyan);
+}
+.hovered {
+  border: 1px solid var(--moderatecyan);
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.heading h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.heading p {
+  color: rgb(94, 94, 94);
+}
 </style>
