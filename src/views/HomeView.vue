@@ -895,12 +895,12 @@ h4 {
   .back-btn {
     padding-inline: 2.5rem;
   }
-  h1[data-v-9ea40744] {
+  h1{
     font-weight: 700;
     font-size: 1.6rem;
     text-align: center;
   }
-  .mastercraft-logo[data-v-9ea40744] {
+  .mastercraft-logo{
     position: absolute;
     transform: translateY(-10.2rem);
     width: 65px;
