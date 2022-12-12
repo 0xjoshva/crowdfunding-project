@@ -87,9 +87,13 @@
       </div>
       <div class="modal-backdrop" v-show="thankYouModalOpen">
         <div class="thankyou-modal">
-          <img src="../assets/icon-check.svg" alt="">
+          <img src="../assets/icon-check.svg" alt="" />
           <h2>Thanks for your support!</h2>
-          <p>Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign in completed.</p>
+          <p>
+            Your pledge brings us one step closer to sharing Mastercraft Bamboo
+            Monitor Riser worldwide. You will get an email once our campaign in
+            completed.
+          </p>
           <button @click="thankYouModalOpen = false">Got it!</button>
         </div>
       </div>
@@ -100,6 +104,18 @@
           <a href="">Discover</a>
           <a href="">Get Started</a>
         </div>
+        <img
+          v-if="!menuOpen"
+          @click="menuOpen = !menuOpen"
+          src="../assets/icon-hamburger.svg"
+          alt=""
+        />
+        <img
+          v-if="menuOpen"
+          @click="menuOpen = !menuOpen"
+          src="../assets/icon-close-menu.svg"
+          alt=""
+        />
       </nav>
     </section>
     <section id="crowdfund">
@@ -125,7 +141,9 @@
               @click="bookMarked = !bookMarked"
             >
               <img src="../assets/icon-bookmark.svg" alt="" />
-              <p>Bookmark<span v-show="bookMarked">ed</span></p>
+              <p class="bookmark-txt">
+                Bookmark<span v-show="bookMarked">ed</span>
+              </p>
             </button>
           </div>
         </div>
@@ -247,6 +265,7 @@ export default {
       isChecked: null,
       thankYouModalOpen: false,
       hover: null,
+      menuOpen: false,
     };
   },
   components: {
@@ -712,7 +731,7 @@ h4 {
 .heading p {
   color: rgb(94, 94, 94);
 }
-.thankyou-modal{
+.thankyou-modal {
   background: white;
   width: 23vw;
   border-radius: 12px;
@@ -724,31 +743,169 @@ h4 {
   padding: 2rem;
   row-gap: 1rem;
 }
-.thankyou-modal img{
+.thankyou-modal img {
   width: 90px;
   margin-bottom: 1rem;
 }
-.thankyou-modal h2{
+.thankyou-modal h2 {
   font-size: 1.3rem;
 }
-.thankyou-modal p{
-font-size: 1rem;
-color: rgb(94, 94, 94);
+.thankyou-modal p {
+  font-size: 1rem;
+  color: rgb(94, 94, 94);
 }
-.thankyou-modal button{
+.thankyou-modal button {
   color: white;
   background: var(--moderatecyan);
   border: none;
   outline: none;
   font-weight: 500;
   padding-inline: 1.6rem;
-  padding-block: .7rem;
+  padding-block: 0.7rem;
   border-radius: 50px;
   font-size: 1rem;
- cursor: pointer;
- transition: .2s ease-in-out all;
+  cursor: pointer;
+  transition: 0.2s ease-in-out all;
 }
-.thankyou-modal button:hover{
+.thankyou-modal button:hover {
   background: var(--darkcyan);
+}
+
+@media only screen and (max-width: 1200px) {
+  /*Tablets [601px -> 1200px]*/
+  #crowdfund {
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 3rem;
+  }
+  .bottom.panel {
+    margin-bottom: 6rem;
+  }
+  .panel {
+    width: 100%;
+  }
+  .panel-div {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mid-values-item {
+    white-space: nowrap;
+  }
+  .modal {
+    width: 90%;
+    height: 99vh;
+    position: absolute;
+  }
+  .thankyou-modal {
+    width: 56vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /*Big smartphones [426px -> 600px]*/
+  .links a {
+    display: none;
+  }
+  #home {
+    height: 45vh;
+    width: 100%;
+    background-image: linear-gradient(
+        to top,
+        rgba(255, 0, 0, 0) 10%,
+        rgba(128, 0, 128, 0) 45%,
+        rgba(0, 0, 0, 0.577) 99%
+      ),
+      url(../assets/image-hero-mobile.jpg);
+  }
+  nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .mid-values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+  }
+  .mid {
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .mid-values-item:nth-child(1) {
+    border-right: none;
+    border-bottom: 2px solid #f3f3f3;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    margin-right: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
+  .mid-values-item:nth-child(2) {
+    border-right: none;
+    border-bottom: 2px solid #f3f3f3;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .mid-values-item {
+    width: fit-content;
+    text-align: center;
+  }
+  .bottom {
+    padding: 2rem;
+    padding-top: 2rem;
+  }
+  .item-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+  }
+  .item-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    row-gap: 1rem;
+  }
+  .bookmark-txt {
+    display: none;
+  }
+  .bookmark-btn {
+    padding-right: 0;
+  }
+  .top {
+    padding-inline: 2.1rem;
+    padding-bottom: 2rem;
+  }
+  .top p {
+    text-align: center;
+  }
+  .back-btn {
+    padding-inline: 2.5rem;
+  }
+  h1[data-v-9ea40744] {
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .mastercraft-logo[data-v-9ea40744] {
+    position: absolute;
+    transform: translateY(-10.2rem);
+    width: 65px;
+    height: auto;
+    z-index: 1;
+  }
 }
 </style>
