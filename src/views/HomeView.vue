@@ -109,12 +109,14 @@
           @click="menuOpen = !menuOpen"
           src="../assets/icon-hamburger.svg"
           alt=""
+          class="nav-toggle"
         />
         <img
           v-if="menuOpen"
           @click="menuOpen = !menuOpen"
           src="../assets/icon-close-menu.svg"
           alt=""
+          class="nav-toggle"
         />
       </nav>
     </section>
@@ -712,6 +714,9 @@ h4 {
   column-gap: 1rem;
   height: fit-content;
 }
+.nav-toggle{
+  display: none;
+}
 .texthover {
   color: var(--moderatecyan);
 }
@@ -907,5 +912,8 @@ h4 {
     height: auto;
     z-index: 1;
   }
+  .nav-toggle{
+  display: block;
+}
 }
 </style>
