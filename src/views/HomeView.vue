@@ -263,9 +263,9 @@ export default {
         },
       ],
       bookMarked: false,
-      modalOpen: true,
+      modalOpen: false,
       isChecked: null,
-      thankYouModalOpen: false,
+      thankYouModalOpen: true,
       hover: null,
       menuOpen: false,
     };
@@ -952,6 +952,9 @@ h4 {
 }
 .row{
   padding: 1rem;
+}
+.thankyou-modal{
+  width: 90%;
 }
 }
 </style>
