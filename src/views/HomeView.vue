@@ -265,7 +265,7 @@ export default {
       bookMarked: false,
       modalOpen: false,
       isChecked: null,
-      thankYouModalOpen: true,
+      thankYouModalOpen: false,
       hover: null,
       menuOpen: false,
     };
@@ -930,6 +930,7 @@ h4 {
 .modal-container{
     overflow-y: scroll;
     height: 25rem;
+    
 }
 .modal h1{
   text-align: left;
