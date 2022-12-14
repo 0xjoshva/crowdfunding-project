@@ -263,7 +263,7 @@ export default {
         },
       ],
       bookMarked: false,
-      modalOpen: false,
+      modalOpen: true,
       isChecked: null,
       thankYouModalOpen: false,
       hover: null,
@@ -497,6 +497,7 @@ h6 {
   padding: 2rem;
   width: 40vw;
   border-radius: 8px;
+  height: fit-content;
 }
 .modal-top {
   display: flex;
@@ -800,7 +801,7 @@ h4 {
   }
   .modal {
     width: 90%;
-    height: 99vh;
+    height: fit-content;
     position: absolute;
   }
   .thankyou-modal {
@@ -914,6 +915,43 @@ h4 {
   }
   .nav-toggle{
   display: block;
+}
+.modal-backdrop{
+  position: fixed;
+  min-height: fit-content;
+
+}
+.modal{
+  width: 90%;
+  height: 36rem;
+  padding: 1rem;
+
+}
+.modal-container{
+    overflow-y: scroll;
+    height: 25rem;
+}
+.modal h1{
+  text-align: left;
+}
+.first{
+  display: flex;
+  flex-direction: column;
+}
+.input-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: .5rem;
+}
+.end{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.row{
+  padding: 1rem;
 }
 }
 </style>
